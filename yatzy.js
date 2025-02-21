@@ -9,6 +9,9 @@ for (let i = 0; i < 5; i++) {
   dice[i] = Object.create(die)
 }
 
+export let scores = {ones: 0, twos: 0, threes: 0, fours: 0, fives: 0, sixes: 0,
+onePair: 0, twoPairs: 0, threeSame: 0, fourSame: 0, fullHouse: 0, smallStraight: 0,
+largeStraight: 0, yatzy: 0, chance: 0}
 
 //Throw all dice that are not on hold
 export function throwDice() {
@@ -18,6 +21,7 @@ export function throwDice() {
       die.face = Math.floor(Math.random() * 6 + 1)
     }
   }
+  getResults()
 }
 
 export function resetDice(){
@@ -32,14 +36,24 @@ export function resetThrowCount(){
 }
 
 
-//Logs all dice values
-//TODO remove this maybe?
-export function printDiceValues() {
-  for (let die of dice) {
-    console.log(die.face + " ")
-  }
-}
 
+export function getResults(){
+  scores.ones = sameValuePoints(1)
+  scores.twos = sameValuePoints(2)
+  scores.threes = sameValuePoints(3)
+  scores.fours = sameValuePoints(4)
+  scores.fives = sameValuePoints(5)
+  scores.sixes = sameValuePoints(6)
+  scores.onePair = onePairPoints()
+  scores.twoPairs = twoPairPoints()
+  scores.threeSame = threeSamePoints()
+  scores.fourSame = fourSamePoints()
+  scores.fullHouse = fullHousePoints()
+  scores.smallStraight = smallStraightPoints()
+  scores.largeStraight = largeStraightPoints()
+  scores.chance = chancePoints()
+  scores.yatzy = yatzyPoints()
+  }
 //Get the frequency of the dice values
 export function frequency() {
   let frequency = [0, 0, 0, 0, 0, 0, 0]
@@ -144,14 +158,14 @@ export function yatzyPoints() {
   }
   return 0
 }
-throwDice()
-console.log(frequency())
-console.log("4's: " + sameValuePoints(4))
-console.log("Pairs: " + onePairPoints())
-console.log("Two Pairs:" + twoPairPoints())
-console.log("Three Same:" + threeSamePoints())
-console.log("Four Same:" + fourSamePoints())
-console.log("Full House: " + fullHousePoints())
-console.log("Small Straight: " + smallStraightPoints())
-console.log("Large Straight: " + largeStraightPoints())
-console.log("Chance:" + chancePoints())
+// throwDice()
+// console.log(frequency())
+// console.log("4's: " + sameValuePoints(4))
+// console.log("Pairs: " + onePairPoints())
+// console.log("Two Pairs:" + twoPairPoints())
+// console.log("Three Same:" + threeSamePoints())
+// console.log("Four Same:" + fourSamePoints())
+// console.log("Full House: " + fullHousePoints())
+// console.log("Small Straight: " + smallStraightPoints())
+// console.log("Large Straight: " + largeStraightPoints())
+// console.log("Chance:" + chancePoints())
