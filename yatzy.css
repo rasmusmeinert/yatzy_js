@@ -4,3 +4,19 @@ body {
     padding: 0;
     background-color: #282828;
 }
+
+p {
+    color: #928374;
+}
+
+section {
+    padding: 10px;
+    border: 1px solid #928374;
+    margin: 10px;
+}
+
+.dice {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+}
