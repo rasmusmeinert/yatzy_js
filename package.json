@@ -1,0 +1,23 @@
+{
+  "name": "yatzy_js",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "gui.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rasmusmeinert/yatzy_js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rasmusmeinert/yatzy_js/issues"
+  },
+  "homepage": "https://github.com/rasmusmeinert/yatzy_js#readme"
+}
