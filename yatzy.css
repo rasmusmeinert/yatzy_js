@@ -13,6 +13,36 @@ section {
     padding: 10px;
     border: 1px solid #928374;
     margin: 10px;
+    border-radius: 10px;
+}
+
+input[type="text"] {
+    width: 50px;
+}
+
+#scorePane {
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr 2fr;
+}
+
+label {
+    color:#928374;
+}
+
+.col1 {
+    grid-column: 1;
+}
+
+.col2 {
+    grid-column: 2;
+}
+
+.col3 {
+    grid-column: 3;
+}
+
+.col4 {
+    grid-column: 4;
 }
 
 .dice {
