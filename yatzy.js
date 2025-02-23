@@ -9,9 +9,8 @@ for (let i = 0; i < 5; i++) {
   dice[i] = Object.create(die)
 }
 
-export let scores = {ones: 0, twos: 0, threes: 0, fours: 0, fives: 0, sixes: 0,
-onePair: 0, twoPairs: 0, threeSame: 0, fourSame: 0, fullHouse: 0, smallStraight: 0,
-largeStraight: 0, yatzy: 0, chance: 0}
+export let currentScores = []
+export let playerScores = []
 
 //Throw all dice that are not on hold
 export function throwDice() {
@@ -24,36 +23,37 @@ export function throwDice() {
   getResults()
 }
 
-export function resetDice(){
-  for (let die of dice){
-    dice.face = 0;
-    dice.hold = false
+export function resetDice() {
+  for (let die of dice) {
+    die.face = 0;
+    die.hold = false
   }
+  getResults()
 }
 
-export function resetThrowCount(){
+export function resetThrowCount() {
   throwCount = 0;
 }
 
 
+export function getResults() {
+  currentScores[0] = sameValuePoints(1)
+  currentScores[1] = sameValuePoints(2)
+  currentScores[2] = sameValuePoints(3)
+  currentScores[3] = sameValuePoints(4)
+  currentScores[4] = sameValuePoints(5)
+  currentScores[5] = sameValuePoints(6)
+  currentScores[6] = onePairPoints()
+  currentScores[7] = twoPairPoints()
+  currentScores[8] = threeSamePoints()
+  currentScores[9] = fourSamePoints()
+  currentScores[10] = fullHousePoints()
+  currentScores[11] = smallStraightPoints()
+  currentScores[12] = largeStraightPoints()
+  currentScores[13] = chancePoints()
+  currentScores[14] = yatzyPoints()
+}
 
-export function getResults(){
-  scores.ones = sameValuePoints(1)
-  scores.twos = sameValuePoints(2)
-  scores.threes = sameValuePoints(3)
-  scores.fours = sameValuePoints(4)
-  scores.fives = sameValuePoints(5)
-  scores.sixes = sameValuePoints(6)
-  scores.onePair = onePairPoints()
-  scores.twoPairs = twoPairPoints()
-  scores.threeSame = threeSamePoints()
-  scores.fourSame = fourSamePoints()
-  scores.fullHouse = fullHousePoints()
-  scores.smallStraight = smallStraightPoints()
-  scores.largeStraight = largeStraightPoints()
-  scores.chance = chancePoints()
-  scores.yatzy = yatzyPoints()
-  }
 //Get the frequency of the dice values
 export function frequency() {
   let frequency = [0, 0, 0, 0, 0, 0, 0]
@@ -122,29 +122,29 @@ export function fullHousePoints() {
   return 0
 }
 
-export function smallStraightPoints(){
-  let smallStraight = [0,1,1,1,1,1,0]
-  for (let i = 0; i <= 6; i ++){
-    if (frequency()[i] !== smallStraight[i]){
+export function smallStraightPoints() {
+  let smallStraight = [0, 1, 1, 1, 1, 1, 0]
+  for (let i = 0; i <= 6; i++) {
+    if (frequency()[i] !== smallStraight[i]) {
       return 0
     }
   }
   return 15
 }
 
-export function largeStraightPoints(){
-  let largeStraight = [0,0,1,1,1,1,1]
-  for (let i = 0; i <= 6; i ++){
-    if (frequency()[i] !== largeStraight[i]){
+export function largeStraightPoints() {
+  let largeStraight = [0, 0, 1, 1, 1, 1, 1]
+  for (let i = 0; i <= 6; i++) {
+    if (frequency()[i] !== largeStraight[i]) {
       return 0
     }
   }
   return 20
 }
 
-export function chancePoints(){
+export function chancePoints() {
   let chancePoints = 0
-  for (let die of dice){
+  for (let die of dice) {
     chancePoints += die.face
   }
   return chancePoints
