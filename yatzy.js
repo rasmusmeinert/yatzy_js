@@ -9,6 +9,8 @@ for (let i = 0; i < 5; i++) {
   dice[i] = Object.create(die)
 }
 
+export let currentScores = []
+export let playerScores = []
 
 //Throw all dice that are not on hold
 export function throwDice() {
@@ -18,26 +20,38 @@ export function throwDice() {
       die.face = Math.floor(Math.random() * 6 + 1)
     }
   }
+  getResults()
 }
 
-export function resetDice(){
-  for (let die of dice){
-    dice.face = 0;
-    dice.hold = false
+export function resetDice() {
+  for (let die of dice) {
+    die.face = 0;
+    die.hold = false
   }
+  getResults()
 }
 
-export function resetThrowCount(){
+export function resetThrowCount() {
   throwCount = 0;
 }
 
 
-//Logs all dice values
-//TODO remove this maybe?
-export function printDiceValues() {
-  for (let die of dice) {
-    console.log(die.face + " ")
-  }
+export function getResults() {
+  currentScores[0] = sameValuePoints(1)
+  currentScores[1] = sameValuePoints(2)
+  currentScores[2] = sameValuePoints(3)
+  currentScores[3] = sameValuePoints(4)
+  currentScores[4] = sameValuePoints(5)
+  currentScores[5] = sameValuePoints(6)
+  currentScores[6] = onePairPoints()
+  currentScores[7] = twoPairPoints()
+  currentScores[8] = threeSamePoints()
+  currentScores[9] = fourSamePoints()
+  currentScores[10] = fullHousePoints()
+  currentScores[11] = smallStraightPoints()
+  currentScores[12] = largeStraightPoints()
+  currentScores[13] = chancePoints()
+  currentScores[14] = yatzyPoints()
 }
 
 //Get the frequency of the dice values
@@ -108,29 +122,29 @@ export function fullHousePoints() {
   return 0
 }
 
-export function smallStraightPoints(){
-  let smallStraight = [0,1,1,1,1,1,0]
-  for (let i = 0; i <= 6; i ++){
-    if (frequency()[i] !== smallStraight[i]){
+export function smallStraightPoints() {
+  let smallStraight = [0, 1, 1, 1, 1, 1, 0]
+  for (let i = 0; i <= 6; i++) {
+    if (frequency()[i] !== smallStraight[i]) {
       return 0
     }
   }
   return 15
 }
 
-export function largeStraightPoints(){
-  let largeStraight = [0,0,1,1,1,1,1]
-  for (let i = 0; i <= 6; i ++){
-    if (frequency()[i] !== largeStraight[i]){
+export function largeStraightPoints() {
+  let largeStraight = [0, 0, 1, 1, 1, 1, 1]
+  for (let i = 0; i <= 6; i++) {
+    if (frequency()[i] !== largeStraight[i]) {
       return 0
     }
   }
   return 20
 }
 
-export function chancePoints(){
+export function chancePoints() {
   let chancePoints = 0
-  for (let die of dice){
+  for (let die of dice) {
     chancePoints += die.face
   }
   return chancePoints
@@ -144,14 +158,14 @@ export function yatzyPoints() {
   }
   return 0
 }
-throwDice()
-console.log(frequency())
-console.log("4's: " + sameValuePoints(4))
-console.log("Pairs: " + onePairPoints())
-console.log("Two Pairs:" + twoPairPoints())
-console.log("Three Same:" + threeSamePoints())
-console.log("Four Same:" + fourSamePoints())
-console.log("Full House: " + fullHousePoints())
-console.log("Small Straight: " + smallStraightPoints())
-console.log("Large Straight: " + largeStraightPoints())
-console.log("Chance:" + chancePoints())
+// throwDice()
+// console.log(frequency())
+// console.log("4's: " + sameValuePoints(4))
+// console.log("Pairs: " + onePairPoints())
+// console.log("Two Pairs:" + twoPairPoints())
+// console.log("Three Same:" + threeSamePoints())
+// console.log("Four Same:" + fourSamePoints())
+// console.log("Full House: " + fullHousePoints())
+// console.log("Small Straight: " + smallStraightPoints())
+// console.log("Large Straight: " + largeStraightPoints())
+// console.log("Chance:" + chancePoints())
