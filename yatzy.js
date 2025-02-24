@@ -55,6 +55,13 @@ export function pairScore(){
   return pairScore
 }
 
+export function getBonus(){
+  if (pairScore() >= 63){
+    return 50
+  }
+  else return 0
+}
+
 
 export function getResults() {
   currentScores[0] = sameValuePoints(1)
@@ -173,7 +180,7 @@ export function chancePoints() {
 export function yatzyPoints() {
   for (let i = 6; i > 0; i--) {
     if (frequency()[i] >= 5) {
-      return i * 5
+      return 50
     }
   }
   return 0

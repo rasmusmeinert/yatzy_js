@@ -20,6 +20,7 @@ let diceImages = document.querySelectorAll(".dice")
 let turns = document.querySelector("#turns")
 let total = document.querySelector("#txfTotal")
 let pairSum = document.querySelector("#txfSum")
+let bonus = document.querySelector("#txfBonus")
 
 let textFields = [ones, twos, threes, fours, fives, sixes, onePair, twoPairs, threeSame, fourSame, fullHouse
   , smallStraight, largeStraight, chance, yatzy]
@@ -34,14 +35,13 @@ for (let textField of textFields) {
   textField.onclick = selectScore
 }
 
-//TODO currently the game breaks when u save a roll from previous round
 
 function rollClick(event) {
   if (dice.throwCount < 3) {
     dice.throwDice()
     updateDieImage()
     smartUpdateScores()
-    turns.innerHTML = `Turn ${dice.throwCount}`
+    turns.innerHTML = 3 - dice.throwCount
   }
 }
 
@@ -70,13 +70,14 @@ function selectScore(event) {
     resetThrowCount()
     total.value = dice.totalScore()
     pairSum.value = dice.pairScore()
+    bonus.value = dice.getBonus()
   }
 }
 
 
 function resetThrowCount() {
   dice.resetThrowCount()
-  turns.innerHTML = `Turn ${dice.throwCount}`
+  turns.innerHTML = 3 - dice.throwCount  
   dice.resetDice()
   smartUpdateScores()
   resetHold()
@@ -94,7 +95,11 @@ function resetHold() {
 function smartUpdateScores() {
   for (let textField in textFields) {
     if (dice.playerScores[textField] == undefined) {
+      if (dice.currentScores[textField] != 0){
       textFields[textField].value = dice.currentScores[textField]
+      } else {
+        textFields[textField].value = "" 
+      }
     }
   }
 }
