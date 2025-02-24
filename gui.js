@@ -66,15 +66,18 @@ function toggleHold(event) {
 function selectScore(event) {
   let index = btnScores.indexOf(event.target)
   let textField = textFields[index]
-  if (textField.value != 0) {
-    dice.playerScores[index] = parseInt(textField.value)
-    textField.style.backgroundColor = '#83a598'
-    resetThrowCount()
-    event.target.disabled = true
-    total.value = dice.totalScore()
-    pairSum.value = dice.pairScore()
-    bonus.value = dice.getBonus()
+  let score = textField.value
+  if (score == 0) {
+    dice.playerScores[index] = 0
+  } else {
+    dice.playerScores[index] = parseInt(score)
   }
+  textField.style.backgroundColor = '#83a598'
+  resetThrowCount()
+  event.target.disabled = true
+  total.value = dice.totalScore()
+  pairSum.value = dice.pairScore()
+  bonus.value = dice.getBonus()
 }
 
 
@@ -82,6 +85,7 @@ function resetThrowCount() {
   dice.resetThrowCount()
   turns.innerHTML = 3 - dice.throwCount
   dice.resetDice()
+  updateDieImage()
   smartUpdateScores()
   resetHold()
 }
