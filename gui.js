@@ -18,6 +18,8 @@ let chance = document.querySelector("#txfChance")
 let yatzy = document.querySelector("#txfYatzy")
 let diceImages = document.querySelectorAll(".dice")
 let turns = document.querySelector("#turns")
+let total = document.querySelector("#txfTotal")
+let pairSum = document.querySelector("#txfSum")
 
 let textFields = [ones, twos, threes, fours, fives, sixes, onePair, twoPairs, threeSame, fourSame, fullHouse
   , smallStraight, largeStraight, chance, yatzy]
@@ -44,28 +46,33 @@ function rollClick(event) {
 }
 
 function toggleHold(event) {
-  let diceNumber = event.target.id.charAt(3)
-  //Fixes off by one error
-  diceNumber--
-  if (dice.dice[diceNumber].hold == true) {
-    event.target.style.border = '0px solid'
-    event.target.style.borderRadius = "15px"
-    dice.dice[diceNumber].hold = false
-  } else {
-    event.target.style.border = '2px solid #fe8019'
-    event.target.style.borderRadius = "18px"
-    dice.dice[diceNumber].hold = true
+  if (dice.throwCount != 0) {
+    let diceNumber = event.target.id.charAt(3)
+    //Fixes off by one error
+    diceNumber--
+    if (dice.dice[diceNumber].hold == true) {
+      event.target.style.border = '0px solid'
+      event.target.style.borderRadius = "15px"
+      dice.dice[diceNumber].hold = false
+    } else {
+      event.target.style.border = '2px solid #fe8019'
+      event.target.style.borderRadius = "18px"
+      dice.dice[diceNumber].hold = true
+    }
   }
 }
 
 function selectScore(event) {
   if (event.target.value != 0) {
     let index = textFields.indexOf(event.target)
-    dice.playerScores[index] = event.target.value
+    dice.playerScores[index] = parseInt(event.target.value)
     event.target.style.border = '2px solid #83a598'
     resetThrowCount()
+    total.value = dice.totalScore()
+    pairSum.value = dice.pairScore()
   }
 }
+
 
 function resetThrowCount() {
   dice.resetThrowCount()

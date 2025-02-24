@@ -35,6 +35,26 @@ export function resetThrowCount() {
   throwCount = 0;
 }
 
+export function totalScore() {
+  let totalScore = 0
+  for (let score of playerScores) {
+    if (score != undefined) {
+      totalScore += score
+    }
+  }
+  return totalScore
+}
+
+export function pairScore(){
+  let pairScore = 0
+  for (let i = 0; i < 6; i++){
+    if (playerScores[i] != undefined){
+      pairScore += playerScores[i]
+    }
+  }
+  return pairScore
+}
+
 
 export function getResults() {
   currentScores[0] = sameValuePoints(1)
