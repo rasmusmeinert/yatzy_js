@@ -70,6 +70,7 @@ function selectScore(event) {
     dice.playerScores[index] = parseInt(textField.value)
     textField.style.border = '2px solid #83a598'
     resetThrowCount()
+    event.target.disabled = true
     total.value = dice.totalScore()
     pairSum.value = dice.pairScore()
     bonus.value = dice.getBonus()
