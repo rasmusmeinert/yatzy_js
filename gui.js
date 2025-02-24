@@ -21,7 +21,7 @@ let turns = document.querySelector("#turns")
 let total = document.querySelector("#txfTotal")
 let pairSum = document.querySelector("#txfSum")
 let bonus = document.querySelector("#txfBonus")
-let btnScores = document.querySelectorAll(".btnScores")
+let btnScores = Array.from(document.querySelectorAll(".btnScores"))
 
 let textFields = [ones, twos, threes, fours, fives, sixes, onePair, twoPairs, threeSame, fourSame, fullHouse
   , smallStraight, largeStraight, chance, yatzy]
@@ -32,8 +32,8 @@ for (let die of diceImages) {
   die.onclick = toggleHold
 }
 
-for (let textField of textFields) {
-  textField.onclick = selectScore
+for (let btn of btnScores) {
+  btn.onclick = selectScore
 }
 
 
@@ -64,10 +64,11 @@ function toggleHold(event) {
 }
 
 function selectScore(event) {
-  if (event.target.value != 0) {
-    let index = textFields.indexOf(event.target)
-    dice.playerScores[index] = parseInt(event.target.value)
-    event.target.style.border = '2px solid #83a598'
+  let index = btnScores.indexOf(event.target)
+  let textField = textFields[index]
+  if (textField.value != 0) {
+    dice.playerScores[index] = parseInt(textField.value)
+    textField.style.border = '2px solid #83a598'
     resetThrowCount()
     total.value = dice.totalScore()
     pairSum.value = dice.pairScore()
@@ -78,7 +79,7 @@ function selectScore(event) {
 
 function resetThrowCount() {
   dice.resetThrowCount()
-  turns.innerHTML = 3 - dice.throwCount  
+  turns.innerHTML = 3 - dice.throwCount
   dice.resetDice()
   smartUpdateScores()
   resetHold()
@@ -96,10 +97,10 @@ function resetHold() {
 function smartUpdateScores() {
   for (let textField in textFields) {
     if (dice.playerScores[textField] == undefined) {
-      if (dice.currentScores[textField] != 0){
-      textFields[textField].value = dice.currentScores[textField]
+      if (dice.currentScores[textField] != 0) {
+        textFields[textField].value = dice.currentScores[textField]
       } else {
-        textFields[textField].value = "" 
+        textFields[textField].value = ""
       }
     }
   }
