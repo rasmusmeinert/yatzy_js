@@ -14,10 +14,8 @@
                 <img src="images/dice4.png" class="dice" id="die4">
                 <img src="images/dice5.png" class="dice" id="die5">            
             </div>
-            <div id="reroll">
                 <p>Rolls: <span id="turns">3</span></p>
                 <button type="button" id="btnRoll">Roll</button>
-            </div>
         </section>
 
         <section id="scoreSection">
@@ -34,10 +32,14 @@
                 <input type="text" id="txfFives" value="" class="col2" disabled>
                 <label class="col1"><button type="button" class="btnScores">6-s</button></label>
                 <input type="text" id="txfSixes" value="" class="col2" disabled>
-                <label class="col3">Sum:</label>
-                <input type="text" id="txfSum" value="" class="col3" disabled>
-                <label class="col4">Bonus:</label>
-                <input type="text" id="txfBonus" value="" class="col4" disabled>
+                <div class = "col3">
+                <label>Sum:</label>
+                <input type="text" id="txfSum" value="" disabled>
+                </div>
+                <div class = "col4">
+                <label >Bonus:</label>
+                <input type="text" id="txfBonus" value="" disabled>
+                </div>
                 <label class="col1"><button type="button" class="btnScores">One pair</button></label>
                 <input type="text" id="txfOnePair" value="" class="col2" disabled>
                 <label class="col1"><button type="button" class="btnScores">Two pairs</button></label>
@@ -56,8 +58,10 @@
                 <input type="text" id="txfChance" value="" class="col2" disabled>
                 <label class="col1"><button type="button" class="btnScores">Yatzy</button></label>
                 <input type="text" id="txfYatzy" value="" class="col2" disabled>
-                <label class="col4">Total:</label>
-                <input type="text" id="txfTotal" value="" class="col4" disabled>
+                <div class ="col4">
+                <label>Total:</label>
+                <input type="text" id="txfTotal" value="" disabled>
+                </div>
             </div>
         </section>
     </body>
