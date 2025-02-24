@@ -10,6 +10,7 @@ p {
 }
 
 section {
+    width: 45%;
     padding: 10px;
     border: 1px solid #928374;
     margin: 10px;
@@ -37,7 +38,7 @@ input[type="text"] {
 
 #scorePane {
     display: grid;
-    grid-template-columns: 2fr 1fr 2fr 2fr;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
 }
 
 label {
@@ -47,9 +48,9 @@ label {
 .btnScores {
     color: #282828;
     background-color: #fbf1c7;
-    border-radius: 5px;
-    padding: 8px 15px;
-    width: 145px;
+    border-radius: 2px;
+    padding: 4px 7px;
+    width: 135px;
 
 }
 
@@ -82,7 +83,7 @@ label {
 }
 
 .dice {
-    width: 100px;
-    height: 100px;
+    width: 15%;
+    height: 15%;
     margin: 5px;
 }

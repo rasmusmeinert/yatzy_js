@@ -68,7 +68,7 @@ function selectScore(event) {
   let textField = textFields[index]
   if (textField.value != 0) {
     dice.playerScores[index] = parseInt(textField.value)
-    textField.style.border = '2px solid #83a598'
+    textField.style.backgroundColor = '#83a598'
     resetThrowCount()
     event.target.disabled = true
     total.value = dice.totalScore()
