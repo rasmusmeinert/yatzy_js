@@ -22,6 +22,20 @@ input[type="text"] {
     background-color: #fbf1c7;
 }
 
+#btnRoll {
+    background-color: #fe8019;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+
+#btnRoll:hover {
+    background-color: #d65d0e;
+}
+
+#btnRoll:active {
+    background-color: #af3a03;
+}
+
 #scorePane {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 1fr;
