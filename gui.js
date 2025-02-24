@@ -21,6 +21,7 @@ let turns = document.querySelector("#turns")
 let total = document.querySelector("#txfTotal")
 let pairSum = document.querySelector("#txfSum")
 let bonus = document.querySelector("#txfBonus")
+let btnScores = document.querySelectorAll(".btnScores")
 
 let textFields = [ones, twos, threes, fours, fives, sixes, onePair, twoPairs, threeSame, fourSame, fullHouse
   , smallStraight, largeStraight, chance, yatzy]
