@@ -140,8 +140,8 @@ export function fourSamePoints() {
 export function fullHousePoints() {
   for (let i = 6; i > 0; i--) {
     if (frequency()[i] === 3) {
-      for (let j = i - 1; j > 0; j--) {
-        if (frequency()[j] === 2) {
+      for (let j = 6; j > 0; j--) {
+        if (frequency()[j] === 2 && i !== j) {
           return i * 3 + j * 2
         }
       }
